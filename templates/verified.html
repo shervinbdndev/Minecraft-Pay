@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    <title>
+        خوش آمدید {{ request.user.username }}
+    </title>
+{% endblock title %}
+{% block body %}
+    <div class="container text-center mt-5">
+        <div class="row">
+            <div class="col-sm">
+                <h2 class="text-success fs-3">احراز هویت شما تکمیل شد</h2>
+                <a class="link-info" href="{% url 'login' %}">برای ورود به حساب خود کلیک کنید</a>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

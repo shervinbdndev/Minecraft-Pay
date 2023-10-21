@@ -1,0 +1,56 @@
+{% load static %}
+{% load i18n %}
+<link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<style type="text/css">
+  @font-face {
+    font-family: Lalezar;
+    src: url('static/fonts/Lalezar-Regular.ttf');
+  }
+
+  .spinner-border {
+    height: 20px;
+    width: 20px;
+  }
+
+  * {
+    text-align: right;
+  }
+
+  body {
+    font-family: Lalezar;
+    display: block;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    background-color: #1F2330;
+  }
+</style>
+<nav style="background-color: #1F2330;" class="navbar navbar-expand-lg mb-5">
+    <div class="container-fluid">
+      {% if request.user.is_authenticated %}
+        <a class="navbar-brand text-white fs-3">{{ request.user.username }}</a>
+      {% else %}
+        <a class="navbar-brand text-white fs-3">MineCraft Pay</a>
+      {% endif %}
+      <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            {% if request.user.is_authenticated %}
+              <a href="{% url 'profile' %}" class="btn btn-success text-dark">پنل کاربری</a>
+              <a href="{% url 'specific' %}" class="btn btn-warning text-dark">مشخصات کاربری</a>
+              <a href="{% url 'logout' %}" class="btn btn-danger text-dark">خروج از حساب کاربری</a>
+            {% else %}
+              <a href="{% url 'register' %}" class="btn btn-primary text-dark">ایجاد حساب کاربری</a>
+              <a href="{% url 'login' %}" class="btn btn-info text-dark ml-3">ورود به حساب کاربری</a>
+            {% endif %}
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>

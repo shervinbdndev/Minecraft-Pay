@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    <title>
+        صفحه ثبت نام
+    </title>
+{% endblock %}
+{% block body %}
+    <div class="container text-center mt-5">
+        <form class="form-inline" action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <div class="container-sm">
+                <div class="row">
+                    <h6 class="text-info mt-2">{{ register_form.username.label }}</h6>
+                    <div class="field">
+                        <p class="control has-icons-left">
+                            {{ register_form.username }}
+                            <span class="icon is-small is-left">
+                                <i style="color: #1F2330;" class="fas fa-user-circle"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <h6 class="text-info mt-2">{{ register_form.first_name.label }}</h6>
+                    <div class="field">
+                        <p class="control has-icons-left">
+                            {{ register_form.first_name }}
+                            <span class="icon is-small is-left">
+                                <i style="color: #1F2330;" class="fas fa-user"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <h6 class="text-info mt-2">{{ register_form.last_name.label }}</h6>
+                    <div class="field">
+                        <p class="control has-icons-left">
+                            {{ register_form.last_name }}
+                            <span class="icon is-small is-left">
+                                <i style="color: #1F2330;" class="fas fa-user-plus"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <h6 class="text-info mt-2">{{ register_form.email.label }}</h6>
+                    <div class="field">
+                        <p class="control has-icons-left">
+                            {{ register_form.email }}
+                            <span class="icon is-small is-left">
+                                <i style="color: #1F2330;" class="fas fa-envelope"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <h6 class="text-info mt-2">{{ register_form.password.label }}</h6>
+                    <div class="field">
+                        <p class="control has-icons-left">
+                            {{ register_form.password }}
+                            <span class="icon is-small is-left">
+                                <i style="color: #1F2330;" class="fas fa-lock"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <h6 class="text-info mt-2">{{ register_form.con_password.label }}</h6>
+                    <div class="field">
+                        <p class="control has-icons-left">
+                            {{ register_form.con_password }}
+                            <span class="icon is-small is-left">
+                                <i style="color: #1F2330;" class="fas fa-lock"></i>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button style="width: 150px;" id="create" type="submit" class="btn btn-info text-dark">ثبت نام</button>
+                    </div>
+                    <a class="link-info mt-2" href="{% url 'login' %}">حساب کاربری دارید؟ اینجا کلیک کنید</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        jQuery(function($){
+            $(document).ajaxSend(function() {
+                $('spinner-border').fadeIn(580);
+
+                var loading_tag = '<div class="spinner-border"></div>&nbsp;&nbspلطفا صبر کنید';
+                $('#create').html(loading_tag);
+            });
+
+            $('#create').click(function() {
+                $.ajax({
+                    type: 'GET',
+                    success: function(data) {
+                        console.log(data);
+                    }
+                }).done(function() {
+                    setTimeout(function() {
+                        $('.spinner-border').fadeOut(500);
+                    }, 700);
+                });
+            });
+        });
+    </script>
+{% endblock %}

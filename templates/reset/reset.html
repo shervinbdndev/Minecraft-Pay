@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    <title>
+        بازنشانی رمز ورود
+    </title>
+{% endblock %}
+{% block body %}
+    <div class="container text-center mt-5">
+        <form class="form-inline" action="{% url 'reset' %}" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <h6 class="text-info mt-2">{{ reset_password_form.email.label }}</h6>
+                <div class="field">
+                    <p class="control has-icons-left">
+                        {{ reset_password_form.email }}
+                        <span class="icon is-small is-left">
+                            <i style="color: #1F2330;" class="fas fa-envelope"></i>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button style="width: 150px;" id="reset" type="submit" class="btn btn-info text-dark">ارسال درخواست</button>
+                </div>
+                <a class="link-info mt-2" href="{% url 'login' %}">حساب کاربری دارید؟ اینجا کلیک کنید</a>
+            </div>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        jQuery(function($){
+            $(document).ajaxSend(function() {
+                $('spinner-border').fadeIn(580);
+
+                var loading_tag = '<div class="spinner-border"></div>&nbsp;&nbspلطفا صبر کنید';
+                $('#reset').html(loading_tag);
+            });
+
+            $('#reset').click(function() {
+                $.ajax({
+                    type: 'GET',
+                    success: function(data) {
+                        console.log(data);
+                    }
+                }).done(function() {
+                    setTimeout(function() {
+                        $('.spinner-border').fadeOut(500);
+                    }, 700);
+                });
+            });
+        });
+    </script>
+{% endblock %}

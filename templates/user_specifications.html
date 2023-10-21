@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    <title>
+        مشخضات کاربری
+    </title>
+{% endblock %}
+{% block body %}
+    <div class="container text-center mt-5">
+        <div class="row">
+            <div class="col-sm">
+                <h3 class="text-info mt-2">:نام کاربری</h3>
+                <h3 class="text-white mt-2">{{ request.user.username }}</h3>
+            </div>
+            <div class="col-sm">
+                <h3 class="text-info mt-2">:نام</h3>
+                <h3 class="text-white mt-2">{{ request.user.first_name }}</h3>
+            </div>
+            <div class="col-sm">
+                <h3 class="text-info mt-2">:نام خانوادگی</h3>
+                <h3 class="text-white mt-2">{{ request.user.last_name }}</h3>
+            </div>
+            <div class="col-sm">
+                <h3 class="text-info mt-2">:ایمیل</h3>
+                <h3 class="text-white mt-2">{{ request.user.email }}</h3>
+            </div>
+        </div>
+    </div>
+{% endblock %}

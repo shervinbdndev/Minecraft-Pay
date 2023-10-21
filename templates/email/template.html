@@ -1,0 +1,6 @@
+{% autoescape off %}
+    درود بر تو {{ user.username }}
+
+    برای فعالسازی حساب کاربری، رو لینک پایین کلیک کن
+    {{ protocol }}://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+{% endautoescape %}

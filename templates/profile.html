@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    <title>
+        خوش آمدید {{ request.user.username }}
+    </title>
+{% endblock title %}
+{% block body %}
+    <style>
+        :root {
+            --background-color: {{ settings.website_background_color }};
+        }
+        
+        nav {
+            background-color: var(--background-color);
+          }
+    </style>
+    <div class="container text-center mt-5">
+        <div class="alert alert-info">
+            <h2 class="fs-3">خوش آمدید</h2>
+        </div>
+    </div>
+{% endblock body %}

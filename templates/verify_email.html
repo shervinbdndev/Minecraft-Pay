@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    <title>
+        احراز هویت خود را تکمیل کنید {{ request.user.username }}
+    </title>
+{% endblock %}
+{% block body %}
+    <div class="container text-center mt-5">
+        {% if not request.user.is_authenticated %}
+            <h2 class="text-white fs-3">{{ request.session.verification_text }}</h2>
+        {% endif %}
+    </div>
+{% endblock %}

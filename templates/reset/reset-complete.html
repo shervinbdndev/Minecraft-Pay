@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    <title>
+        رمز ورود شما با موفقیت تغییر کرد
+    </title>
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="container-sm">
+            <div class="alert alert-info">
+                <h2 class="fs-4">رمز ورود شما با موفقیت تغییر کرد</h2>
+            </div>
+            <a class="link-info mt-2" href="{% url 'login' %}">ورود به صفحه لاگین</a>
+        </div>
+    </div>
+{% endblock %}
